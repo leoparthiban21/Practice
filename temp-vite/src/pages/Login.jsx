@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 
 const Login = () => {
   const [studentId, setStudentId] = useState('');
@@ -59,6 +59,12 @@ const Login = () => {
           
           <button type="submit" className="btn primary full-width">Login</button>
         </form>
+        
+        <div style={{ textAlign: 'center', marginTop: '1rem' }}>
+          <p style={{ color: 'var(--text-muted)' }}>
+            Don't have an account? <Link to="/register" style={{ color: 'var(--primary-color)', textDecoration: 'none', fontWeight: 500 }}>Register</Link>
+          </p>
+        </div>
       </div>
     </div>
   );

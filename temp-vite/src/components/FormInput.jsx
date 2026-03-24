@@ -7,31 +7,42 @@ const FormInput = ({ label, type, value, onChange, placeholder }) => {
     setShowPassword(!showPassword);
   };
 
+  const isPassword = type === 'password';
+
   return (
     <div className="form-group">
-      <label htmlFor={label.toLowerCase().replace(' ', '-')} className="form-label">
+      <label htmlFor={label.toLowerCase().replace(' ', '-')}>
         {label}
       </label>
-      <div className="input-container">
-        <input
-          id={label.toLowerCase().replace(' ', '-')}
-          type={type === 'password' && showPassword ? 'text' : type}
-          value={value}
-          onChange={onChange}
-          placeholder={placeholder}
-          className="form-input"
-          required
-        />
-        {type === 'password' && (
+      
+      {isPassword ? (
+        <div className="password-input-group">
+          <input
+            id={label.toLowerCase().replace(' ', '-')}
+            type={showPassword ? 'text' : 'password'}
+            value={value}
+            onChange={onChange}
+            placeholder={placeholder}
+            required
+          />
           <button
             type="button"
             onClick={togglePasswordVisibility}
-            className="password-toggle"
+            className="toggle-password"
           >
             {showPassword ? 'Hide' : 'Show'}
           </button>
-        )}
-      </div>
+        </div>
+      ) : (
+        <input
+          id={label.toLowerCase().replace(' ', '-')}
+          type={type}
+          value={value}
+          onChange={onChange}
+          placeholder={placeholder}
+          required
+        />
+      )}
     </div>
   );
 };
